@@ -9,6 +9,14 @@ mahalanobis_c <- function(y, mu, sigma) {
     .Call('_MRT_mahalanobis_c', PACKAGE = 'MRT', y, mu, sigma)
 }
 
+mahalanobis_HD <- function(y, mu, sigma) {
+    .Call('_MRT_mahalanobis_HD', PACKAGE = 'MRT', y, mu, sigma)
+}
+
+norm_HD <- function(y, mu, sigma) {
+    .Call('_MRT_norm_HD', PACKAGE = 'MRT', y, mu, sigma)
+}
+
 norm_c <- function(y, mu, sigma) {
     .Call('_MRT_norm_c', PACKAGE = 'MRT', y, mu, sigma)
 }

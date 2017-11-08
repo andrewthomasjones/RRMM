@@ -19,6 +19,32 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// mahalanobis_HD
+double mahalanobis_HD(arma::vec y, arma::vec mu, arma::mat sigma);
+RcppExport SEXP _MRT_mahalanobis_HD(SEXP ySEXP, SEXP muSEXP, SEXP sigmaSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< arma::vec >::type y(ySEXP);
+    Rcpp::traits::input_parameter< arma::vec >::type mu(muSEXP);
+    Rcpp::traits::input_parameter< arma::mat >::type sigma(sigmaSEXP);
+    rcpp_result_gen = Rcpp::wrap(mahalanobis_HD(y, mu, sigma));
+    return rcpp_result_gen;
+END_RCPP
+}
+// norm_HD
+double norm_HD(arma::vec y, arma::vec mu, arma::mat sigma);
+RcppExport SEXP _MRT_norm_HD(SEXP ySEXP, SEXP muSEXP, SEXP sigmaSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< arma::vec >::type y(ySEXP);
+    Rcpp::traits::input_parameter< arma::vec >::type mu(muSEXP);
+    Rcpp::traits::input_parameter< arma::mat >::type sigma(sigmaSEXP);
+    rcpp_result_gen = Rcpp::wrap(norm_HD(y, mu, sigma));
+    return rcpp_result_gen;
+END_RCPP
+}
 // norm_c
 double norm_c(double y, double mu, double sigma);
 RcppExport SEXP _MRT_norm_c(SEXP ySEXP, SEXP muSEXP, SEXP sigmaSEXP) {
@@ -33,12 +59,12 @@ BEGIN_RCPP
 END_RCPP
 }
 // MMEst
-Rcpp::List MMEst(const arma::vec& y, int g, double tol, int max_iter);
+Rcpp::List MMEst(const arma::mat& y, int g, double tol, int max_iter);
 RcppExport SEXP _MRT_MMEst(SEXP ySEXP, SEXP gSEXP, SEXP tolSEXP, SEXP max_iterSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< const arma::vec& >::type y(ySEXP);
+    Rcpp::traits::input_parameter< const arma::mat& >::type y(ySEXP);
     Rcpp::traits::input_parameter< int >::type g(gSEXP);
     Rcpp::traits::input_parameter< double >::type tol(tolSEXP);
     Rcpp::traits::input_parameter< int >::type max_iter(max_iterSEXP);
@@ -49,6 +75,8 @@ END_RCPP
 
 static const R_CallMethodDef CallEntries[] = {
     {"_MRT_mahalanobis_c", (DL_FUNC) &_MRT_mahalanobis_c, 3},
+    {"_MRT_mahalanobis_HD", (DL_FUNC) &_MRT_mahalanobis_HD, 3},
+    {"_MRT_norm_HD", (DL_FUNC) &_MRT_norm_HD, 3},
     {"_MRT_norm_c", (DL_FUNC) &_MRT_norm_c, 3},
     {"_MRT_MMEst", (DL_FUNC) &_MRT_MMEst, 4},
     {NULL, NULL, 0}
