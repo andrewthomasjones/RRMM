@@ -73,6 +73,15 @@ double mahalanobis_c(double y, double mu, double sigma)
 }
 
 // [[Rcpp::export]]
+double mahalanobis_HD(arma::vec y, arma::vec mu, arma::mat sigma)
+{
+  arma::vec d = y-mu;
+  double delta = std::sqrt(as_scalar(d.t()*pinv(sigma)*d));
+  return delta;
+}
+
+
+// [[Rcpp::export]]
 double norm_c(double y, double mu, double sigma)
 {
   double f = (1/(std::sqrt(arma::datum::pi*2.0*sigma))) * std::exp(-0.5*mahalanobis_c(y,mu,std::sqrt(sigma)));
